@@ -219,6 +219,60 @@ po = data['po']
 # ============================================================
 st.markdown('<div class="main-header">Aerospace Backorder Prediction Dashboard</div>', unsafe_allow_html=True)
 
+with st.expander("How to use this app", expanded=False):
+    st.markdown("""
+**What this app does in plain English.**
+An aerospace company stocks 300 different parts. If the wrong part
+runs out, an aircraft can't be repaired and revenue stops. The trick
+is predicting *which part will be backordered next week* before it
+happens, so procurement can expedite shipments. This app uses **two
+machine-learning models** (Logistic Regression and Random Forest)
+trained on 8 years of weekly inventory, purchase order, and quality
+data, and a **knapsack optimiser** that picks the best parts to
+expedite within a fixed budget.
+
+**Quick start (60 seconds).**
+1. Look at the **At-risk parts** table — these are the parts the
+   model thinks are most likely to backorder next week.
+2. Adjust the **expedite budget** slider in the sidebar — how much
+   money procurement can spend on rush shipments.
+3. The **Recommended expedites** table updates: which specific parts
+   to expedite given that budget.
+4. Click any part to drill into its 8-year history.
+
+**Sidebar controls explained.**
+- **Risk threshold** — how confident does the model need to be before
+  flagging a part? Lower threshold = more parts flagged (catches more
+  real risks but also more false alarms).
+- **Expedite budget** — total dollars available for rush shipments
+  this week. The optimiser picks the combination that prevents the
+  most expected revenue loss.
+- **Criticality weights** — A-class parts are more important than
+  B-class. Adjust how much extra weight the optimiser gives to
+  A-class.
+
+**The tabs.**
+- **Risk overview** — top-K at-risk parts ranked by model probability.
+- **Model comparison** — Logistic Regression vs Random Forest on
+  test data (PR-AUC, ROC-AUC, F1).
+- **Expedite recommender** — given the budget and weights you set in
+  the sidebar, which parts to expedite for max impact.
+- **Sensitivity** — how does the recommendation change if you double
+  the budget? Triple it?
+
+**What the metrics mean.**
+- **PR-AUC** — area under the precision-recall curve. Better when
+  the positive class is rare (which backorders are). Higher = better.
+- **Backorder probability** — the model's prediction for each part,
+  from 0 (safe) to 1 (almost certain).
+- **Expedite cost vs prevented loss** — for each candidate expedite,
+  what does it cost vs what revenue does it protect.
+
+**Try this.** Set the budget to $50K, look at the top 5 recommended
+expedites. Then drop it to $10K and watch which ones get cut — those
+are the lower-priority cases the optimiser is willing to skip.
+""")
+
 # ============================================================
 # SIDEBAR
 # ============================================================
