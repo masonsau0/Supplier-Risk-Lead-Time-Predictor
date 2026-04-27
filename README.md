@@ -1,5 +1,7 @@
 # Aerospace Supply Chain Backorder Predictor
 
+**[Live demo](https://aerospace-supplier-risk-lead-time-predictor.streamlit.app)** — runs in your browser, no install required.
+
 End-to-end **decision-support system** that predicts weekly backorder risk
 across **300 aerospace parts** and recommends a budget-bounded expedite
 action plan. Built on real-world-shaped supply-chain data (parts master,
