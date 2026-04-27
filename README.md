@@ -1,6 +1,6 @@
 # Aerospace Supply Chain Backorder Predictor
 
-**[Live demo](https://mason-aerospace-supplier-risk-lead-time-predictor.streamlit.app/)** — runs in your browser, no install required.
+**[Live demo](https://mason-aerospace-supplier-risk-lead-time-predictor.streamlit.app/)**: runs in the browser, no install required.
 
 End-to-end **decision-support system** that predicts weekly backorder risk
 across **300 aerospace parts** and recommends a budget-bounded expedite
@@ -10,9 +10,9 @@ incidents) totalling **15 MB** across four CSVs.
 
 The system is exposed through three layers:
 
-1. A **Python pipeline** (`backorder_analysis.py`) — load, feature-engineer,
+1. A **Python pipeline** (`backorder_analysis.py`): load, feature-engineer,
    train, evaluate, and persist figures.
-2. An **interactive Streamlit dashboard** (`backorder_dashboard_app.py`) —
+2. An **interactive Streamlit dashboard** (`backorder_dashboard_app.py`):
    weekly-risk explorer, model comparison, sensitivity sliders, and an
    expedite-recommendation engine that reads operations cost weights and
    criticality preferences in real time.
@@ -35,9 +35,9 @@ The system is exposed through three layers:
    - Defect-rate features by supplier and part class
    - PO timing features (days late, fill rate)
    - Categorical one-hots for criticality and supplier
-2. **Two classifiers compared** — Logistic Regression (scaled, balanced) and Random Forest. Tuned for **PR-AUC** because backorders are rare events (≈ 4 % positive rate); ROC-AUC over-weights the dominant negative class.
-3. **Threshold tuning** for **F2 score** — recall counts twice as much as precision because missing a backorder is more expensive than expediting an unneeded part.
-4. **Prescriptive layer** — top-K knapsack selection over the predicted-risk × criticality × cost-of-expedite tuple, returning the action plan that maximises expected value within the user's expedite budget.
+2. **Two classifiers compared**: Logistic Regression (scaled, balanced) and Random Forest. Tuned for **PR-AUC** because backorders are rare events (≈ 4 % positive rate); ROC-AUC over-weights the dominant negative class.
+3. **Threshold tuning** for **F2 score**: recall counts twice as much as precision because missing a backorder is more expensive than expediting an unneeded part.
+4. **Prescriptive layer**: top-K knapsack selection over the predicted-risk × criticality × cost-of-expedite tuple, returning the action plan that maximises expected value within the user's expedite budget.
 
 ## Results
 
@@ -82,10 +82,10 @@ streamlit run backorder_dashboard_app.py
 
 The dashboard:
 
-- **Week explorer** — pick any week from the historical horizon and see the top-risk parts, their predicted backorder probability, and the recommended expedite action.
-- **Model comparison** — Logistic Regression vs. Random Forest with PR curves, confusion matrices, and per-class precision/recall.
-- **Expedite recommendation engine** — sliders for total expedite budget plus criticality weights (`α_A`, `α_B` relative to class C); the dashboard re-solves the knapsack and shows the new action list immediately.
-- **Sensitivity analysis** — shift the decision threshold and see how recall, precision, and the action list shift.
+- **Week explorer**: pick any week from the historical horizon and see the top-risk parts, their predicted backorder probability, and the recommended expedite action.
+- **Model comparison**: Logistic Regression vs. Random Forest with PR curves, confusion matrices, and per-class precision/recall.
+- **Expedite recommendation engine**: sliders for total expedite budget plus criticality weights (`α_A`, `α_B` relative to class C); the dashboard re-solves the knapsack and shows the new action list immediately.
+- **Sensitivity analysis**: shift the decision threshold and see how recall, precision, and the action list shift.
 
 ## Stack
 
